@@ -10,7 +10,7 @@ type CharacterDesignerProps = {
 }
 
 export function CharacterDesigner({pixelCount = 8, byteCount = 3, rowCount = 12}: CharacterDesignerProps) {
-    const [byte, setByte] = React.useState<number[]>([])
+    const [bytes, setBytes] = React.useState<number[]>([])
     const [clicked, setClicked] = React.useState<boolean[][][]>(
         createDesignerData(rowCount, byteCount, pixelCount)
     )
@@ -43,7 +43,7 @@ export function CharacterDesigner({pixelCount = 8, byteCount = 3, rowCount = 12}
             }
 
         }
-        setByte(bytes)
+        setBytes(bytes)
     }, [clicked])
 
     useEffect(() => {
@@ -58,7 +58,7 @@ export function CharacterDesigner({pixelCount = 8, byteCount = 3, rowCount = 12}
                     <button onClick={clear}>
                         Clear Designer
                     </button>
-                    {byte.map((byte, index) => generateHex(byte) + " ")}
+                    {bytes.map((byte) => generateHex(byte) + " ")}
                 </div>
     </div>
 }
